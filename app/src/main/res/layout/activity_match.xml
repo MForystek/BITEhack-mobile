@@ -21,7 +21,7 @@
         android:id="@+id/kgex_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your new friend"
+        android:text="@string/kgex_nick_placeholder"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/skillsListScroll"
         app:layout_constraintStart_toEndOf="@id/kgex_avatar"
@@ -31,22 +31,30 @@
         android:id="@+id/skillsListScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@+id/kgex_avatar"
         app:layout_constraintBottom_toTopOf="@+id/wantedListScroll"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" >
 
         <LinearLayout
             android:id="@+id/skillsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/skillsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kgex_skills" />
+        </LinearLayout>
     </ScrollView>
 
     <ScrollView
         android:id="@+id/wantedListScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@+id/skillsListScroll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +64,12 @@
             android:id="@+id/wantedList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kgex_wants_to" />
+        </LinearLayout>
     </ScrollView>
 
     <Button

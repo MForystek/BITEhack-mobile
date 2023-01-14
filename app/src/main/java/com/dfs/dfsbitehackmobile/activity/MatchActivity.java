@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dfs.dfsbitehackmobile.R;
-import com.dfs.dfsbitehackmobile.dto.Kger;
+import com.dfs.dfsbitehackmobile.dto.Kgex;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +21,7 @@ import java.io.UnsupportedEncodingException;
 
 public class MatchActivity extends AppCompatActivity {
     //TODO remove after json communication implemented
-    private String mockJSON = "{\"kger\":{\"nick\":\"FluffyKitty\",\"email\":\"fluffykitty@cats.com\",\"skills\":[\"Purr\",\"Meow\",\"Skratch\",\"Bite\",\"Becute\"],\"wanted\":[\"ruletheworld\",\"creatingbirdstokill\",\"creatingtoystoplaywith\"]}}";
+    private String mockJSON = "{\"kgex\":{\"nick\":\"FluffyKitty\",\"email\":\"fluffykitty@cats.com\",\"skills\":[\"Purr\",\"Meow\",\"Skratch\",\"Bite\",\"Becute\",\"Benice\",\"Begreat\",\"Beloved\"],\"wanted\":[\"ruletheworld\",\"creatingbirdstokill\",\"creatingtoystoplaywith\"]}}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +40,20 @@ public class MatchActivity extends AppCompatActivity {
         LinearLayout skillsLayout = findViewById(R.id.skillsList);
         LinearLayout wantedLayout = findViewById(R.id.wantedList);
 
-        Kger currentKger;
+        Kgex currentKgex;
         try {
-            currentKger = parseKgerJSON(mockJSON);
+            currentKgex = parseKgexJSON(mockJSON);
         } catch (UnsupportedEncodingException | JSONException e) {
             throw new RuntimeException(e);
         }
 
-        for (String skill : currentKger.getSkills()) {
+        for (String skill : currentKgex.getSkills()) {
             TextView skillTextView = new TextView(this);
             skillTextView.setText(skill);
             skillTextView.setLayoutParams(skillsLayout.getLayoutParams());
             skillsLayout.addView(skillTextView);
         }
-        for (String wanted : currentKger.getWanted()) {
+        for (String wanted : currentKgex.getWanted()) {
             TextView wantedTextView = new TextView(this);
             wantedTextView.setText(wanted);
             wantedTextView.setLayoutParams(wantedLayout.getLayoutParams());
@@ -75,20 +75,20 @@ public class MatchActivity extends AppCompatActivity {
         });
     }
 
-    private Kger parseKgerJSON(String jsonString) throws UnsupportedEncodingException, JSONException {
-        JSONObject kgerJson = new JSONObject(jsonString).getJSONObject("kger");
-        JSONArray kgerSkillsJson = kgerJson.getJSONArray("skills");
-        JSONArray kgerWantedJson = kgerJson.getJSONArray("wanted");
+    private Kgex parseKgexJSON(String jsonString) throws UnsupportedEncodingException, JSONException {
+        JSONObject kgexJson = new JSONObject(jsonString).getJSONObject("kgex");
+        JSONArray kgexSkillsJson = kgexJson.getJSONArray("skills");
+        JSONArray kgexWantedJson = kgexJson.getJSONArray("wanted");
 
-        Kger kger = new Kger();
-        kger.setNick(kgerJson.getString("nick"));
-        kger.setEmail(kgerJson.getString("email"));
-        for (int i = 0; i < kgerSkillsJson.length(); i++) {
-            kger.getSkills().add(kgerSkillsJson.getString(i));
+        Kgex kgex = new Kgex();
+        kgex.setNick(kgexJson.getString("nick"));
+        kgex.setEmail(kgexJson.getString("email"));
+        for (int i = 0; i < kgexSkillsJson.length(); i++) {
+            kgex.getSkills().add(kgexSkillsJson.getString(i));
         }
-        for (int i = 0; i < kgerWantedJson.length(); i++) {
-            kger.getWanted().add(kgerWantedJson.getString(i));
+        for (int i = 0; i < kgexWantedJson.length(); i++) {
+            kgex.getWanted().add(kgexWantedJson.getString(i));
         }
-        return kger;
+        return kgex;
     }
 }

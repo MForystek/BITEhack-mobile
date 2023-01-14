@@ -3,13 +3,13 @@ package com.dfs.dfsbitehackmobile.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kger {
+public class Kgex {
     private String nick;
     private String email;
     private final List<String> skills;
     private final List<String> wanted;
 
-    public Kger() {
+    public Kgex() {
         nick = "N/A";
         email = "na@na.na";
         skills = new ArrayList<>();
