@@ -16,7 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorSecondaryBackground"
+        android:background="@color/colorPrimaryBackground"
         android:orientation="horizontal">
 
         <EditText
@@ -26,7 +26,7 @@
             android:layout_weight="2"
             android:ems="10"
             android:textColor="@color/white"
-            android:background="@color/colorSecondaryBackground"
+            android:background="@color/colorPrimaryBackground"
             android:hint="@string/write_a_message"
             android:inputType="text"
             android:paddingHorizontal="10dp"

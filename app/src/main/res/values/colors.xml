@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4d4dff</color>
-    <color name="colorPrimaryDark">#3655b3</color>
-    <color name="colorPrimaryBackground">#99AFFF</color>
-    <color name="colorSecondary">#804d00</color>
-    <color name="colorSecondaryDark">#3b2a12</color>
-    <color name="colorSecondaryBackground">#513204</color>
-    <color name="colorSecondaryMyMessage">#6B4205</color>
-    <color name="colorSecondaryLight">#B36B00</color>
+    <color name="colorPrimary">#804d00</color>
+    <color name="colorPrimaryDark">#3b2a12</color>
+    <color name="colorPrimaryBackground">#513204</color>
+    <color name="colorPrimaryMyMessage">#6B4205</color>
+    <color name="colorPrimaryLight">#B36B00</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 </resources>
