@@ -25,7 +25,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         startButton.setOnClickListener(view -> {
             Intent matchIntent = new Intent(WelcomeActivity.this, MatchActivity.class);
-            //matchIntent.putExtra("key", value);
             WelcomeActivity.this.startActivity(matchIntent);
         });
 
