@@ -3,7 +3,7 @@
     <string name="start_caption">Let\'s start</string>
     <string name="chat_button_caption">Chat with yourself</string>
     <string name="exit">Exit</string>
-    <string name="kgex_nick_placeholder">Your new friend</string>
-    <string name="kgex_wants_to">KGEX WANTS TO</string>
-    <string name="kgex_skills">KGEX SKILLS</string>
+    <string name="user_nick_placeholder">Your new friend</string>
+    <string name="user_wants_to">USER WANTS TO</string>
+    <string name="user_skills">USER SKILLS</string>
 </resources>

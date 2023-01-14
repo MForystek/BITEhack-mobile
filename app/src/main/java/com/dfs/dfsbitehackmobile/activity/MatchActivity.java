@@ -86,22 +86,22 @@ public class MatchActivity extends AppCompatActivity {
         }
     }
 
-    private User parseUserJSON(String jsonString) throws UnsupportedEncodingException, JSONException {
-        JSONObject kgexJson = new JSONObject(jsonString).getJSONObject("kgex");
-        JSONArray kgexSkillsJson = kgexJson.getJSONArray("skills");
-        JSONArray kgexWantedJson = kgexJson.getJSONArray("wanted");
-
-        User user = new User();
-        user.setNick(kgexJson.getString("nick"));
-        user.setEmail(kgexJson.getString("email"));
-        for (int i = 0; i < kgexSkillsJson.length(); i++) {
-            user.getOwnedSkills().add(kgexSkillsJson.getString(i));
-        }
-        for (int i = 0; i < kgexWantedJson.length(); i++) {
-            user.getWantedSkills().add(kgexWantedJson.getString(i));
-        }
-        return user;
-    }
+//    private User parseUserJSON(String jsonString) throws UnsupportedEncodingException, JSONException {
+//        JSONObject kgexJson = new JSONObject(jsonString).getJSONObject("kgex");
+//        JSONArray kgexSkillsJson = kgexJson.getJSONArray("skills");
+//        JSONArray kgexWantedJson = kgexJson.getJSONArray("wanted");
+//
+//        User user = new User();
+//        user.setNick(kgexJson.getString("nick"));
+//        user.setEmail(kgexJson.getString("email"));
+//        for (int i = 0; i < kgexSkillsJson.length(); i++) {
+//            user.getOwnedSkills().add(kgexSkillsJson.getString(i));
+//        }
+//        for (int i = 0; i < kgexWantedJson.length(); i++) {
+//            user.getWantedSkills().add(kgexWantedJson.getString(i));
+//        }
+//        return user;
+//    }
 
     private int convertDpToPx(int dp) {
         return (int) TypedValue.applyDimension(
