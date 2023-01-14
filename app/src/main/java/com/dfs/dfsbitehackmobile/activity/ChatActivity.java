@@ -8,34 +8,38 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dfs.dfsbitehackmobile.R;
+import com.dfs.dfsbitehackmobile.dto.User;
+
+import java.time.Instant;
 
 public class ChatActivity extends AppCompatActivity {
 
     private EditText editText;
     private MessageAdapter messageAdapter;
-
-    private MessageTmpPlaceholder messageDatabase;
+    private User currentUser;
+    private User otherUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        initializeComponents();
+    }
 
+    private void initializeComponents() {
         editText = (EditText) findViewById(R.id.editText);
-
-        //todo: add to adapter message history
-        messageAdapter = new MessageAdapter(this);
+        currentUser = MockService.getInstance().getCurrentUser();
+        otherUser = MockService.getInstance().getUser(getIntent().getStringExtra("nick"));
+        messageAdapter = new MessageAdapter(this, MockService.getInstance().getMessages(currentUser, otherUser));
         ListView messagesView = (ListView) findViewById(R.id.messages_view);
         messagesView.setAdapter(messageAdapter);
-
-        messageDatabase = new MessageTmpPlaceholder();
     }
 
     public void sendMessage(View view) {
-        String message = editText.getText().toString();
-        if (message.length() > 0) {
-            messageDatabase.addMessage(message);
-            messageAdapter.add(new Message(message, MockService.getInstance().getCurrentUser(), true));
+        Message message = new Message(editText.getText().toString(), currentUser, otherUser, Instant.now(), true);
+        if (message.getText().length() > 0) {
+            MockService.getInstance().writeMessage(message);
+            messageAdapter.add(message);
             editText.getText().clear();
         }
     }

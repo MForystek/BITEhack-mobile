@@ -31,6 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         chatButton.setOnClickListener(view -> {
             Intent chatIntent = new Intent(WelcomeActivity.this, ChatActivity.class);
+            chatIntent.putExtra("nick", ""); //todo: when this is moved to separate class, pass nick of person that user is chatting with.
             WelcomeActivity.this.startActivity(chatIntent);
         });
 

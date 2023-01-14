@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.dfs.dfsbitehackmobile.R;
@@ -18,11 +19,13 @@ import com.dfs.dfsbitehackmobile.R;
 
 public class MessageAdapter extends BaseAdapter {
 
-    List<Message> messages = new ArrayList<>();
+    List<Message> messages;
     Context context;
 
-    public MessageAdapter(Context context) {
+    public MessageAdapter(Context context, List<Message> messages) {
         this.context = context;
+        this.messages = new ArrayList<>(messages);
+        Collections.sort(this.messages);
     }
 
 
@@ -64,10 +67,10 @@ public class MessageAdapter extends BaseAdapter {
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
             convertView.setTag(holder);
 
-            holder.name.setText(message.getUser().getNick());
+            holder.name.setText(message.getSender().getNick());
             holder.messageBody.setText(message.getText());
             GradientDrawable drawable = (GradientDrawable) holder.avatar.getBackground();
-            drawable.setColor(Color.parseColor(message.getUser().getImage()));
+            drawable.setColor(Color.parseColor(message.getSender().getImage()));
         }
 
         return convertView;

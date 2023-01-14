@@ -43,4 +43,5 @@
             android:background="@drawable/ic_send_black_24dp"
             android:onClick="sendMessage"/>
     </LinearLayout>
+<!--    todo: fix white letters on white background bug-->
 </LinearLayout>
