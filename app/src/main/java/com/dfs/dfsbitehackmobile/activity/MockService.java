@@ -45,19 +45,4 @@ public class MockService implements ServiceAPI {
     public void writeMessage(Message message) {
         messages.add(message);
     }
-
-    @Override
-    public boolean updateUser(User user) {
-        return true;
-    }
-
-    @Override
-    public boolean register(String nick, String password) {
-        return true;
-    }
-
-    @Override
-    public boolean login(String nick, String password) {
-        return true;
-    }
 }
