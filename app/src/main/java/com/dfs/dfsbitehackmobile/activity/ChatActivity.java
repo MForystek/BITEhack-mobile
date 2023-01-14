@@ -16,9 +16,6 @@ public class ChatActivity extends AppCompatActivity {
 
     private MessageTmpPlaceholder messageDatabase;
 
-    // todo: replace with real user
-    private final KGexUserData tmpUser = new KGexUserData("Adam", "blue");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +35,7 @@ public class ChatActivity extends AppCompatActivity {
         String message = editText.getText().toString();
         if (message.length() > 0) {
             messageDatabase.addMessage(message);
-            messageAdapter.add(new Message(message, tmpUser, true));
+            messageAdapter.add(new Message(message, MockService.getInstance().getCurrentUser(), true));
             editText.getText().clear();
         }
     }

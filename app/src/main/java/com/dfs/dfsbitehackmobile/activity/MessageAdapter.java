@@ -1,6 +1,5 @@
 package com.dfs.dfsbitehackmobile.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -65,10 +64,10 @@ public class MessageAdapter extends BaseAdapter {
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
             convertView.setTag(holder);
 
-            holder.name.setText(message.getKGexUserData().getName());
+            holder.name.setText(message.getUser().getNick());
             holder.messageBody.setText(message.getText());
             GradientDrawable drawable = (GradientDrawable) holder.avatar.getBackground();
-            drawable.setColor(Color.parseColor(message.getKGexUserData().getColor()));
+            drawable.setColor(Color.parseColor(message.getUser().getImage()));
         }
 
         return convertView;

@@ -1,13 +1,15 @@
 package com.dfs.dfsbitehackmobile.activity;
 
+import com.dfs.dfsbitehackmobile.dto.User;
+
 public class Message {
     private final String text;
-    private final KGexUserData KGexUserData;
+    private final User User;
     private final boolean belongsToCurrentUser;
 
-    public Message(String text, KGexUserData data, boolean belongsToCurrentUser) {
+    public Message(String text, User user, boolean belongsToCurrentUser) {
         this.text = text;
-        this.KGexUserData = data;
+        this.User = user;
         this.belongsToCurrentUser = belongsToCurrentUser;
     }
 
@@ -15,8 +17,8 @@ public class Message {
         return text;
     }
 
-    public KGexUserData getKGexUserData() {
-        return KGexUserData;
+    public User getUser() {
+        return User;
     }
 
     public boolean isBelongsToCurrentUser() {
