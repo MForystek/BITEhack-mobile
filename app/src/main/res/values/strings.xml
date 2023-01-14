@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">DFSBITEhack-mobile</string>
+    <string name="app_name">Knowlexchange</string>
+    <string name="start_caption">Let\'s start</string>
+    <string name="exit">Exit</string>
 </resources>
