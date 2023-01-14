@@ -6,6 +6,8 @@
     <color name="colorSecondary">#804d00</color>
     <color name="colorSecondaryDark">#3b2a12</color>
     <color name="colorSecondaryBackground">#513204</color>
+    <color name="colorSecondaryMyMessage">#6B4205</color>
+    <color name="colorSecondaryLight">#B36B00</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 </resources>

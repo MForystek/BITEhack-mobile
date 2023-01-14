@@ -6,4 +6,5 @@
     <string name="kgex_nick_placeholder">Your new friend</string>
     <string name="kgex_wants_to">KGEX WANTS TO</string>
     <string name="kgex_skills">KGEX SKILLS</string>
+    <string name="write_a_message">Write a message</string>
 </resources>

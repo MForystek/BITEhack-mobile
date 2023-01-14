@@ -18,7 +18,6 @@ import com.dfs.dfsbitehackmobile.R;
 
 
 public class MessageAdapter extends BaseAdapter {
-
     List<Message> messages;
     Context context;
 
@@ -27,7 +26,6 @@ public class MessageAdapter extends BaseAdapter {
         this.messages = new ArrayList<>(messages);
         Collections.sort(this.messages);
     }
-
 
     public void add(Message message) {
         this.messages.add(message);
