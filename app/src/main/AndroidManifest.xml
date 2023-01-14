@@ -24,6 +24,10 @@
         <activity
             android:name=".activity.MatchActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".activity.ChatActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

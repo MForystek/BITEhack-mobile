@@ -20,12 +20,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         Button startButton = findViewById(R.id.startButton);
+        Button chatButton = findViewById(R.id.chatButton);
         Button exitButton = findViewById(R.id.exitButton);
 
         startButton.setOnClickListener(view -> {
             Intent matchIntent = new Intent(WelcomeActivity.this, MatchActivity.class);
             //matchIntent.putExtra("key", value);
             WelcomeActivity.this.startActivity(matchIntent);
+        });
+
+        chatButton.setOnClickListener(view -> {
+            Intent chatIntent = new Intent(WelcomeActivity.this, ChatActivity.class);
+            WelcomeActivity.this.startActivity(chatIntent);
         });
 
         exitButton.setOnClickListener(view -> {
