@@ -20,7 +20,6 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         initializeComponents();
-        ServerConnector.getINSTANCE().signup();
     }
 
 
