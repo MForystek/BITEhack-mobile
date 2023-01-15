@@ -1,10 +1,6 @@
 package com.dfs.dfsbitehackmobile.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dfs.dfsbitehackmobile.R;
 import com.dfs.dfsbitehackmobile.dto.User;
+import com.dfs.dfsbitehackmobile.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +52,7 @@ public class MatchActivity extends AppCompatActivity {
 
         User currentUser = MockService.getInstance().getNextUser();
 
-        int pxMargin = convertDpToPx(5);
+        int pxMargin = Utils.convertDpToPx(5, this);
 
         addUserOwnedSkillsToOwnedSkillsScrollView(ownedSkillsLinearLayout, currentUser, pxMargin);
         addUserWantedSkillsToWantedSkillsScrollView(wantedSkillsLinearLayout, currentUser, pxMargin);
@@ -115,13 +112,5 @@ public class MatchActivity extends AppCompatActivity {
             user.getWantedSkills().add(userWantedSkillsJson.getString(i));
         }
         return user;
-    }
-
-    private int convertDpToPx(int dp) {
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                this.getResources().getDisplayMetrics()
-        );
     }
 }

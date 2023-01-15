@@ -17,6 +17,7 @@ public class MockService implements ServiceAPI {
         users = new ArrayList<>();
         users.add(new User("Adam", "adampączkizjadam2137@poczta.com", "green", Arrays.asList("purring", "sleeping"), Arrays.asList("killing", "meowing")));
         users.add(new User("Mathew", "maciekpaciek@poczta.com", "red", Arrays.asList("guitar playing", "chess"), Arrays.asList("scuba diving", "driving")));
+        users.add(new User("Poteflon", "gdziewidelcem@po.teflonie", "red", Arrays.asList("Potelfoning", "Auching"), Arrays.asList("workalonging", "viverning")));
         messages = new ArrayList<>();
         messages.add(
                 new Message("cześć", users.get(1), users.get(0), Instant.parse("2023-01-14T18:38:24.00Z"),  false));
@@ -46,6 +47,11 @@ public class MockService implements ServiceAPI {
     @Override
     public User getUserByNick(String nick) {
         return users.get(1);
+    }
+
+    @Override
+    public List<User> getUserChats() {
+        return users;
     }
 
     @Override

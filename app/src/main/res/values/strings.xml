@@ -7,4 +7,6 @@
     <string name="user_wanted_skills">USER WANTS TO</string>
     <string name="user_owned_skills">USER SKILLS</string>
     <string name="write_a_message">Write a message</string>
+    <string name="chats">Chats</string>
+    <string name="chat_display">%1$s - %2$s</string>
 </resources>

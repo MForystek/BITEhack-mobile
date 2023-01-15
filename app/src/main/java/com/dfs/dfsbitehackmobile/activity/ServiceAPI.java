@@ -8,6 +8,7 @@ public interface ServiceAPI {
     User getCurrentUser();
     User getUserByNick(String nick);
     User getNextUser();
+    List<User> getUserChats();
     List<Message> getMessages(User user1, User user2);
     void writeMessage(Message message);
 }
