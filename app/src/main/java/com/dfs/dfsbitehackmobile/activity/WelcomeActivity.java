@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.Button;
 
 import com.dfs.dfsbitehackmobile.R;
@@ -12,11 +13,17 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
         initializeComponents();
+        ServerConnector.getINSTANCE().signup();
     }
+
+
 
     private void initializeComponents() {
         Button startButton = findViewById(R.id.startButton);
