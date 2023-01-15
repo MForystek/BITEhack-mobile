@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,9 +18,6 @@ import com.dfs.dfsbitehackmobile.dto.User;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.UnsupportedEncodingException;
 
 public class MatchActivity extends AppCompatActivity {
 
@@ -34,71 +32,87 @@ public class MatchActivity extends AppCompatActivity {
     private void initializeComponents() {
         Button likeButton = findViewById(R.id.likeButton);
         Button dislikeButton = findViewById(R.id.dislikeButton);
-        Button backButton = findViewById(R.id.backButton);
-        LinearLayout skillsLinearLayout = findViewById(R.id.skillsList);
-        LinearLayout wantedLinearLayout = findViewById(R.id.wantedList);
 
-        User currentUser = MockService.getInstance().getCurrentUser();
-
-        int pxMargin = convertDpToPx(5);
-
-        addKgexSkillsToSkillsScrollView(skillsLinearLayout, currentUser, pxMargin);
-        addUserWantedToWantedScrollView(wantedLinearLayout, currentUser, pxMargin);
-
-        TextView nickTextView = findViewById(R.id.kgex_name);
-        nickTextView.setText(currentUser.getNick());
+        loadNextUser();
 
         likeButton.setOnClickListener(view -> {
             Toast.makeText(this, "Of course you like him!", Toast.LENGTH_SHORT).show();
+            loadNextUser();
         });
 
         dislikeButton.setOnClickListener(view -> {
             Toast.makeText(this, "Why you don't like him?", Toast.LENGTH_SHORT).show();
-        });
-
-        backButton.setOnClickListener(view -> {
-            Intent intent = new Intent();
-            setResult(Activity.RESULT_OK, intent);
-            finish();
+            loadNextUser();
         });
     }
 
+    private void loadNextUser() {
+        LinearLayout ownedSkillsLinearLayout = findViewById(R.id.ownedSkillsList);
+        LinearLayout wantedSkillsLinearLayout = findViewById(R.id.wantedSkillsList);
 
-    private void addUserWantedToWantedScrollView(LinearLayout wantedLayout, User currentUser, int pxMargin) {
-        for (String wanted : currentUser.getWantedSkills()) {
-            TextView wantedTextView = new TextView(this);
-            wantedTextView.setText(wanted);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(wantedLayout.getLayoutParams());
-            layoutParams.setMargins(pxMargin, pxMargin, pxMargin, pxMargin);
-            wantedTextView.setLayoutParams(layoutParams);
-            wantedLayout.addView(wantedTextView);
+        ownedSkillsLinearLayout.removeAllViews();
+        wantedSkillsLinearLayout.removeAllViews();
+
+        User currentUser = MockService.getInstance().getNextUser();
+
+        int pxMargin = convertDpToPx(5);
+
+        addUserOwnedSkillsToOwnedSkillsScrollView(ownedSkillsLinearLayout, currentUser, pxMargin);
+        addUserWantedSkillsToWantedSkillsScrollView(wantedSkillsLinearLayout, currentUser, pxMargin);
+
+        TextView nickTextView = findViewById(R.id.user_name);
+        nickTextView.setText(currentUser.getNick());
+    }
+
+    private void addUserOwnedSkillsToOwnedSkillsScrollView(LinearLayout ownedSkillsLayout, User currentUser, int pxMargin) {
+        TextView ownedSkillsTextView = new TextView(this);
+        ownedSkillsTextView.setText(getString(R.string.user_wanted_skills));
+        LinearLayout.LayoutParams ownedSkillsLayoutParams = new LinearLayout.LayoutParams(ownedSkillsLayout.getLayoutParams());
+        ownedSkillsLayoutParams.setMargins(pxMargin, pxMargin*2, pxMargin, pxMargin);
+        ownedSkillsTextView.setLayoutParams(ownedSkillsLayoutParams);
+        ownedSkillsLayout.addView(ownedSkillsTextView);
+
+        for (String ownedSkill : currentUser.getOwnedSkills()) {
+            TextView ownedSkillTextView = new TextView(this);
+            ownedSkillTextView.setText(ownedSkill);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ownedSkillsLayout.getLayoutParams());
+            layoutParams.setMargins(pxMargin*4, 0, pxMargin, pxMargin*2);
+            ownedSkillTextView.setLayoutParams(layoutParams);
+            ownedSkillsLayout.addView(ownedSkillTextView);
         }
     }
 
-    private void addKgexSkillsToSkillsScrollView(LinearLayout skillsLayout, User currentUser, int pxMargin) {
-        for (String skill : currentUser.getOwnedSkills()) {
-            TextView skillTextView = new TextView(this);
-            skillTextView.setText(skill);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(skillsLayout.getLayoutParams());
-            layoutParams.setMargins(pxMargin, pxMargin, pxMargin, pxMargin);
-            skillTextView.setLayoutParams(layoutParams);
-            skillsLayout.addView(skillTextView);
+    private void addUserWantedSkillsToWantedSkillsScrollView(LinearLayout wantedSkillsLayout, User currentUser, int pxMargin) {
+        TextView wantedSkillsTextView = new TextView(this);
+        wantedSkillsTextView.setText(getString(R.string.user_owned_skills));
+        LinearLayout.LayoutParams wantedSkillsLayoutParams = new LinearLayout.LayoutParams(wantedSkillsLayout.getLayoutParams());
+        wantedSkillsLayoutParams.setMargins(pxMargin, pxMargin*2, pxMargin, pxMargin);
+        wantedSkillsTextView.setLayoutParams(wantedSkillsLayoutParams);
+        wantedSkillsLayout.addView(wantedSkillsTextView);
+
+        for (String wantedSkill : currentUser.getWantedSkills()) {
+            TextView wantedSkillTextView = new TextView(this);
+            wantedSkillTextView.setText(wantedSkill);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(wantedSkillsLayout.getLayoutParams());
+            layoutParams.setMargins(pxMargin*4, 0, pxMargin, pxMargin*2);
+            wantedSkillTextView.setLayoutParams(layoutParams);
+            wantedSkillsLayout.addView(wantedSkillTextView);
         }
     }
 
-    private User parseUserJSON(String jsonString) throws UnsupportedEncodingException, JSONException {
-        JSONObject kgexJson = new JSONObject(jsonString).getJSONObject("kgex");
-        JSONArray kgexSkillsJson = kgexJson.getJSONArray("skills");
-        JSONArray kgexWantedJson = kgexJson.getJSONArray("wanted");
+    private User parseUserJSON(String jsonString) throws JSONException {
+        JSONObject userJson = new JSONObject(jsonString).getJSONObject("user");
+        JSONArray userOwnedSkillsJson = userJson.getJSONArray("owned_skills");
+        JSONArray userWantedSkillsJson = userJson.getJSONArray("wanted_skills");
 
         User user = new User();
-        user.setNick(kgexJson.getString("nick"));
-        user.setEmail(kgexJson.getString("email"));
-        for (int i = 0; i < kgexSkillsJson.length(); i++) {
-            user.getOwnedSkills().add(kgexSkillsJson.getString(i));
+        user.setNick(userJson.getString("nick"));
+        user.setEmail(userJson.getString("email"));
+        for (int i = 0; i < userOwnedSkillsJson.length(); i++) {
+            user.getOwnedSkills().add(userOwnedSkillsJson.getString(i));
         }
-        for (int i = 0; i < kgexWantedJson.length(); i++) {
-            user.getWantedSkills().add(kgexWantedJson.getString(i));
+        for (int i = 0; i < userWantedSkillsJson.length(); i++) {
+            user.getWantedSkills().add(userWantedSkillsJson.getString(i));
         }
         return user;
     }

@@ -29,7 +29,7 @@ public class ChatActivity extends AppCompatActivity {
     private void initializeComponents() {
         editText = (EditText) findViewById(R.id.editText);
         currentUser = MockService.getInstance().getCurrentUser();
-        otherUser = MockService.getInstance().getUser(getIntent().getStringExtra("nick"));
+        otherUser = MockService.getInstance().getUserByNick(getIntent().getStringExtra("nick"));
         messageAdapter = new MessageAdapter(this, MockService.getInstance().getMessages(currentUser, otherUser));
         ListView messagesView = (ListView) findViewById(R.id.messages_view);
         messagesView.setAdapter(messageAdapter);
