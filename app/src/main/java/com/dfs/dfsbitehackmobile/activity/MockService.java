@@ -15,14 +15,16 @@ public class MockService implements ServiceAPI {
     private MockService() {
         //normally connection here
         users = new ArrayList<>();
-        users.add(new User("Adam", "adampączkizjadam2137@poczta.com", "green", Arrays.asList("purring", "sleeping"), Arrays.asList("killing", "meowing")));
-        users.add(new User("Mathew", "maciekpaciek@poczta.com", "red", Arrays.asList("guitar playing", "chess"), Arrays.asList("scuba diving", "driving")));
-        users.add(new User("Poteflon", "gdziewidelcem@po.teflonie", "red", Arrays.asList("Potelfoning", "Auching"), Arrays.asList("workalonging", "viverning")));
+        users.add(new User("Adam", "adampączkizjadam2137@poczta.com", "green", Arrays.asList("go somewhere high", "sleep"), Arrays.asList("purr", "meow")));
+        users.add(new User("Mathew", "maciekpaciek@poczta.com", "red", Arrays.asList("playing the guitar", "playing chess"), Arrays.asList("scuba diving", "driving")));
+        users.add(new User("Tony", "gdziewidelcem@po.teflonie", "red", Arrays.asList("COBOL", "Physics of black hole"), Arrays.asList("Eat healthy", "Configure a router")));
         messages = new ArrayList<>();
         messages.add(
-                new Message("cześć", users.get(1), users.get(0), Instant.parse("2023-01-14T18:38:24.00Z"),  false));
+                new Message("Hello", users.get(0), users.get(1), Instant.parse("2023-01-14T18:38:24.00Z"),  true));
         messages.add(
-                new Message("hej", users.get(0), users.get(1), Instant.parse("2023-01-14T18:35:24.00Z"), true));
+                new Message("Hi", users.get(1), users.get(0), Instant.parse("2023-01-14T18:35:24.00Z"), false));
+        messages.add(
+                new Message("So what brings you here?", users.get(0), users.get(1), Instant.parse("2023-01-14T18:40:26.00Z"), false));
     }
 
     public static MockService getInstance() {
